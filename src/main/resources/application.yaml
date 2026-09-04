@@ -1,0 +1,31 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: learn-spring-ai-alibaba-agent-framework
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC
+    username: root
+    password: ${MYSQL_PWD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  ai:
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+            schema: classpath:/schema-mysql.sql
+    dashscope:
+      api-key: ${DASHSCOPE_API_KEY}
+      chat:
+        options:
+          model: qwen3.8-max
+    minimax:
+      api-key: ${MINIMAX_API_KEY}
+      chat:
+        options:
+          model: MiniMax-M3
+logging:
+  config: classpath:logback-spring.xml
+redis:
+  address: redis://127.0.0.1:6379
